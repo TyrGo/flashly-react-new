@@ -6,12 +6,12 @@ import { Children } from '~/types';
 export const queryClient = new QueryClient();
 
 export const ReactQueryProvider = ({ children }: Children) => {
-    return (
-        <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools 
-                initialIsOpen={import.meta.env.MODE === 'development'} 
-            />
-                {children}
-        </QueryClientProvider>
-    );
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools
+        initialIsOpen={import.meta.env.MODE === 'development'}
+      />
+      {children}
+    </QueryClientProvider>
+  );
 };

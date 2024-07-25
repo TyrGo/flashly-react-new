@@ -17,7 +17,6 @@ export const LoaderWrapper = ({
   size,
   loadingComponent,
 }: LoaderWrapperProps) => {
-
   if (isLoading) {
     return (
       <Box
@@ -29,10 +28,11 @@ export const LoaderWrapper = ({
           height: height ? height : '100px',
         }}
       >
-        {loadingComponent 
-          ? loadingComponent 
-          : <CircularProgress size={size ? size : 40} />
-        }
+        {loadingComponent ? (
+          loadingComponent
+        ) : (
+          <CircularProgress size={size ? size : 40} />
+        )}
       </Box>
     );
   }

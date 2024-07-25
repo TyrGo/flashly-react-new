@@ -15,6 +15,7 @@ import { FormProvider, RHFTextField } from '~/components/hookForm';
 import { paths } from '~/routes/paths';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+
 import { useLoginMutation } from './queries/authPost';
 
 const LoginSchema = Yup.object().shape({
@@ -46,71 +47,75 @@ export const Login = () => {
     formState: { isSubmitting },
   } = methods;
 
-  const { mutate: login, isLoading: isLoginLoading, error } = useLoginMutation();
+  const {
+    mutate: login,
+    isLoading: isLoginLoading,
+    error,
+  } = useLoginMutation();
 
-  const onSubmit: SubmitHandler<LoginFormValues> = async (formData: LoginFormValues) => {
+  const onSubmit: SubmitHandler<LoginFormValues> = async (
+    formData: LoginFormValues,
+  ) => {
     const resp = await login(formData);
 
     if (resp) {
-        setJwt(resp);
-        navigate(paths.cards.view); // TODO: admin to list
+      setJwt(resp);
+      navigate(paths.cards.view); // TODO: admin to list
     }
   };
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
-  }
+  };
 
   return (
-        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-            <Stack 
-              spacing={2.5}
-              maxWidth={350}
-              sx={{ 
-                background: (theme) => theme.palette.background.paper,
-                padding: 4,
-                borderRadius: 1,
-              }}
-            >
-            <Typography variant='h4' gutterBottom>
-                Log in to Flashly
-              </Typography>
+    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <Stack
+        spacing={2.5}
+        maxWidth={350}
+        sx={{
+          background: (theme) => theme.palette.background.paper,
+          padding: 4,
+          borderRadius: 1,
+        }}
+      >
+        <Typography variant="h4" gutterBottom>
+          Log in to Flashly
+        </Typography>
 
-              {error?.status === 401 && (
-                <Alert severity='error'>
-                  Invalid username or password.
-                </Alert>
-              )}
+        {error?.status === 401 && (
+          <Alert severity="error">Invalid username or password.</Alert>
+        )}
 
-              <RHFTextField label='Username' name='username' />
+        <RHFTextField label="Username" name="username" />
 
-              <RHFTextField
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position='end'>
-                      <IconButton edge='end' onClick={togglePassword}>
-                        {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                label='Password'
-                name='password'
-                type={showPassword ? 'text' : 'password'}
-              />
+        <RHFTextField
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton edge="end" onClick={togglePassword}>
+                  {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+          label="Password"
+          name="password"
+          type={showPassword ? 'text' : 'password'}
+        />
 
-              <LoadingButton
-                fullWidth
-                color='inherit'
-                loading={isSubmitting || isLoginLoading}
-                disabled={isSubmitting || isLoginLoading}
-                size='large'
-                type='submit'
-                variant='contained'
-              >
-                Login
-              </LoadingButton>
-            </Stack>
-        </FormProvider>
+        <LoadingButton
+          fullWidth
+          color="inherit"
+          loading={isSubmitting || isLoginLoading}
+          disabled={isSubmitting || isLoginLoading}
+          size="large"
+          type="submit"
+          variant="contained"
+        >
+          Login
+        </LoadingButton>
+      </Stack>
+    </FormProvider>
   );
 };

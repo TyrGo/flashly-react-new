@@ -3,9 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 export type User = {
-    readonly id?: number;
-    username: string;
-    password?: string;
-    is_admin?: boolean;
+  readonly id?: number;
+  username: string;
+  password?: string;
+  is_admin?: boolean;
 };
-

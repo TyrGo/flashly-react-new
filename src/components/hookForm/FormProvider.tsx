@@ -7,13 +7,12 @@ type FormProviderProps = {
   onSubmit?: VoidFunction;
 };
 
-export const FormProvider = ({ 
-    children, 
-    onSubmit, 
-    methods 
-}: FormProviderProps) => 
-    <Form {...methods}>
-      <form onSubmit={onSubmit}>
-        {children}
-      </form>
-    </Form>;
+export const FormProvider = ({
+  children,
+  onSubmit,
+  methods,
+}: FormProviderProps) => (
+  <Form {...methods}>
+    <form onSubmit={onSubmit}>{children}</form>
+  </Form>
+);

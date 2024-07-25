@@ -3,12 +3,11 @@
 /* tslint:disable */
 /* eslint-disable */
 export type Card = {
-    readonly id?: number;
-    word: string;
-    defn: string;
-    bin?: number;
-    wrongs?: number;
-    due?: string;
-    user_id: number;
+  readonly id?: number;
+  word: string;
+  defn: string;
+  bin?: number;
+  wrongs?: number;
+  due?: string;
+  user_id: number;
 };
-

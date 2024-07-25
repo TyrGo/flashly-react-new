@@ -15,8 +15,8 @@ export const useAuth = () => {
   } = useQuery({
     queryKey: ['user'],
     queryFn: () => AppClient.auth.getAuthCheck(),
-    retry: false,   
-  })
+    retry: false,
+  });
 
   const navigate = useNavigate();
   const isAuthenticated = !isError && Boolean(user);

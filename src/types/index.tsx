@@ -3,15 +3,15 @@ export type Children = {
 };
 
 export enum Permissions {
-    Admin = "admin",
-    Authenticated = "auth",
-    Anon = "anon"
+  Admin = 'admin',
+  Authenticated = 'auth',
+  Anon = 'anon',
 }
 
 export type BinUpdate = {
-    level: "up" | "down";
-    cardId: number;
-}
+  level: 'up' | 'down';
+  cardId: number;
+};
 
 export type CardEditorFormValues = {
   word: string;

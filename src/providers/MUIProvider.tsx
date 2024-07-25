@@ -6,13 +6,13 @@ import { darkTheme, lightTheme } from '~/styles/theme';
 import { Children } from '~/types';
 
 export const MUIProvider = (props: Children) => {
-    const { children } = props;
-    const theme = useRecoilValue(themeAtom);
+  const { children } = props;
+  const theme = useRecoilValue(themeAtom);
 
-    return (
-        <ThemeProvider theme={theme === 'lightTheme' ? lightTheme : darkTheme}>
-            <CssBaseline />
-            {children}
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={theme === 'lightTheme' ? lightTheme : darkTheme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
+  );
 };

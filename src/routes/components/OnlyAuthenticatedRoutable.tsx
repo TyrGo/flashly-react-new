@@ -4,12 +4,10 @@ import { LoaderWrapper } from '~/components/loaders';
 
 export const OnlyAuthenticatedRoutable = () => {
   const { isAuthenticated, isLoading } = useAuth();
-  
+
   return (
     <LoaderWrapper isLoading={isLoading}>
-      {isAuthenticated 
-        ? <Outlet /> 
-        : <Navigate replace to={'/login'} />}
+      {isAuthenticated ? <Outlet /> : <Navigate replace to={'/login'} />}
     </LoaderWrapper>
   );
 };

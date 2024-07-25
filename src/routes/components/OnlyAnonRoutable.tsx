@@ -7,9 +7,7 @@ export const OnlyAnonRoutable = () => {
 
   return (
     <LoaderWrapper isLoading={isLoading}>
-      {isAuthenticated 
-        ? <Navigate replace to={'/cards/card'} /> 
-        : <Outlet />}
+      {isAuthenticated ? <Navigate replace to={'/cards/card'} /> : <Outlet />}
     </LoaderWrapper>
   );
 };

@@ -74,10 +74,13 @@ export class AxiosHttpRequestWithRetry extends BaseHttpRequest {
       },
       (error) => {
         return Promise.reject(error);
-      }
+      },
     );
 
-    createAuthRefreshInterceptor(this.refreshableAxiosInstance, this.refreshAuthLogic);
+    createAuthRefreshInterceptor(
+      this.refreshableAxiosInstance,
+      this.refreshAuthLogic,
+    );
   }
 
   public override request<T>(options: ApiRequestOptions): CancelablePromise<T> {

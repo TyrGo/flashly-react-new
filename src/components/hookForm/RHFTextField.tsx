@@ -7,25 +7,25 @@ type Props = TextFieldProps & {
 };
 
 type Field = {
-    value: number | string;
-    onChange: (value: number | string) => void;
+  value: number | string;
+  onChange: (value: number | string) => void;
 };
 
 type FieldState = {
-    error: { message: string };
+  error: { message: string };
 };
 
 type RenderProps = {
-    field: Field;
-    fieldState: FieldState;
+  field: Field;
+  fieldState: FieldState;
 };
 
-export const RHFTextField = ({ 
-    name, 
-    hideError, 
-    helperText, 
-    type, 
-    ...other 
+export const RHFTextField = ({
+  name,
+  hideError,
+  helperText,
+  type,
+  ...other
 }: Props) => {
   const { control } = useFormContext();
 
@@ -33,25 +33,27 @@ export const RHFTextField = ({
     <Controller
       name={name}
       control={control}
-      render={({ field, fieldState }: RenderProps) => { 
+      render={({ field, fieldState }: RenderProps) => {
         const { value, onChange } = field;
         const { error } = fieldState;
 
-        return (<TextField
-          {...field}
-          fullWidth
-          type={type}
-          value={type === 'number' && value === 0 ? '' : value}
-          onChange={({ target }) => {
-            const { value } = target;
+        return (
+          <TextField
+            {...field}
+            fullWidth
+            type={type}
+            value={type === 'number' && value === 0 ? '' : value}
+            onChange={({ target }) => {
+              const { value } = target;
 
-            type === 'number' ? onChange(Number(value)) : onChange(value);
-          }}
-          error={!!error}
-          helperText={error && !hideError ? error?.message : helperText}
-          {...other}
-        />)
+              type === 'number' ? onChange(Number(value)) : onChange(value);
+            }}
+            error={!!error}
+            helperText={error && !hideError ? error?.message : helperText}
+            {...other}
+          />
+        );
       }}
     />
   );
-}
+};

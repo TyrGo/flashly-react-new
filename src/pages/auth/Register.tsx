@@ -15,6 +15,7 @@ import { FormProvider, RHFTextField } from '~/components/hookForm';
 import { paths } from '~/routes/paths';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+
 import { useLoginMutation } from './queries/authPost';
 import { useRegisterMutation } from './queries/authCreate';
 
@@ -47,72 +48,76 @@ export const Component = () => {
     formState: { isSubmitting },
   } = methods;
 
-  const { mutate: register, isLoading: isLoginLoading, error } = useRegisterMutation();
+  const {
+    mutate: register,
+    isLoading: isLoginLoading,
+    error,
+  } = useRegisterMutation();
 
-  const onSubmit: SubmitHandler<RegisterFormValues> = async (formData: RegisterFormValues) => {
+  const onSubmit: SubmitHandler<RegisterFormValues> = async (
+    formData: RegisterFormValues,
+  ) => {
     const resp = await register(formData);
 
     if (resp) {
-        setJwt(resp);
-        navigate(paths.cards.list);
+      setJwt(resp);
+      navigate(paths.cards.list);
     }
   };
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
-  }
+  };
 
-  console.log("error", error)
+  console.log('error', error);
   return (
-        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-            <Stack 
-              spacing={2.5}
-              maxWidth={350}
-              sx={{ 
-                background: (theme) => theme.palette.background.paper,
-                padding: 4,
-                borderRadius: 1,
-              }}
-            >
-            <Typography variant='h4' gutterBottom>
-                Register with Flashly
-              </Typography>
+    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <Stack
+        spacing={2.5}
+        maxWidth={350}
+        sx={{
+          background: (theme) => theme.palette.background.paper,
+          padding: 4,
+          borderRadius: 1,
+        }}
+      >
+        <Typography variant="h4" gutterBottom>
+          Register with Flashly
+        </Typography>
 
-              {error?.status === 401 && (
-                <Alert severity='error'>
-                    Username already taken.
-                </Alert>
-              )}
+        {error?.status === 401 && (
+          <Alert severity="error">Username already taken.</Alert>
+        )}
 
-              <RHFTextField label='Username' name='username' />
+        <RHFTextField label="Username" name="username" />
 
-              <RHFTextField
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position='end'>
-                      <IconButton edge='end' onClick={togglePassword}>
-                        {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                label='Password'
-                name='password'
-                type={showPassword ? 'text' : 'password'}
-              />
+        <RHFTextField
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton edge="end" onClick={togglePassword}>
+                  {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+          label="Password"
+          name="password"
+          type={showPassword ? 'text' : 'password'}
+        />
 
-              <LoadingButton
-                fullWidth
-                color='inherit'
-                loading={isSubmitting || isLoginLoading}
-                disabled={isSubmitting || isLoginLoading}
-                size='large'
-                type='submit'
-                variant='contained'
-              >
-                Login
-              </LoadingButton>
-            </Stack>
-        </FormProvider>
+        <LoadingButton
+          fullWidth
+          color="inherit"
+          loading={isSubmitting || isLoginLoading}
+          disabled={isSubmitting || isLoginLoading}
+          size="large"
+          type="submit"
+          variant="contained"
+        >
+          Login
+        </LoadingButton>
+      </Stack>
+    </FormProvider>
   );
 };
