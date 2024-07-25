@@ -24,9 +24,13 @@ const CardSchema = Yup.object().shape({
 
 export const CardEditor = ({ card }: CardEditorProps) =>  {
   const { id, defn, word } = card;
-
   const { mutate: updateCard, isLoading: isUpdatingCard } = useCardUpdateMutation();
   const { mutate: deleteCard, isLoading: isDeletingCard } = useCardDeleteMutation();
+
+
+  const handleDelete = () => {
+    deleteCard(id);
+  }
 
   const methods = useForm({
     resolver: yupResolver(CardSchema),
@@ -68,7 +72,7 @@ export const CardEditor = ({ card }: CardEditorProps) =>  {
             size="small"
             variant="contained"
             color="error"
-            onClick={deleteCard}
+            onClick={handleDelete}
             loading={isLoading}
             disabled={isLoading}
           >

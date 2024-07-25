@@ -8,9 +8,8 @@ export const CardRoutes = (
     <Route element={<OnlyAuthenticatedRoutable />}>
         <Route element={<Layout />}>
             <Route element={<Card />} path={paths.cards.view} />
-            {/* <Route element={<OnlyAdminRoutable />}> */}
-                <Route element={<Cards />} path={paths.cards.list} />
-            {/* </Route> */}
+            <Route element={<Card />} path={paths.cards.view} />
+            <Route element={<Cards />} path={paths.cards.list} />
         </Route>
     </Route>
 );

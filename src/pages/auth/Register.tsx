@@ -16,6 +16,7 @@ import { paths } from '~/routes/paths';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useLoginMutation } from './queries/authPost';
+import { useRegisterMutation } from './queries/authCreate';
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string(),
@@ -25,13 +26,13 @@ const LoginSchema = Yup.object().shape({
     .required('Password is required'),
 });
 
-type LoginFormValues = {
+type RegisterFormValues = {
   username: string;
   password: string;
   google_auth_token?: string;
 };
 
-export const Login = () => {
+export const Component = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
@@ -46,14 +47,14 @@ export const Login = () => {
     formState: { isSubmitting },
   } = methods;
 
-  const { mutate: login, isLoading: isLoginLoading, error } = useLoginMutation();
+  const { mutate: register, isLoading: isLoginLoading, error } = useRegisterMutation();
 
-  const onSubmit: SubmitHandler<LoginFormValues> = async (formData: LoginFormValues) => {
-    const resp = await login(formData);
+  const onSubmit: SubmitHandler<RegisterFormValues> = async (formData: RegisterFormValues) => {
+    const resp = await register(formData);
 
     if (resp) {
         setJwt(resp);
-        navigate(paths.cards.view); // TODO: admin to list
+        navigate(paths.cards.list);
     }
   };
 
@@ -61,6 +62,7 @@ export const Login = () => {
     setShowPassword(!showPassword);
   }
 
+  console.log("error", error)
   return (
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Stack 
@@ -73,12 +75,12 @@ export const Login = () => {
               }}
             >
             <Typography variant='h4' gutterBottom>
-                Log in to Flashly
+                Register with Flashly
               </Typography>
 
               {error?.status === 401 && (
                 <Alert severity='error'>
-                  Invalid username or password.
+                    Username already taken.
                 </Alert>
               )}
 

@@ -13,5 +13,7 @@ export const FormProvider = ({
     methods 
 }: FormProviderProps) => 
     <Form {...methods}>
-      <form onSubmit={onSubmit}>{children}</form>
+      <form onSubmit={onSubmit}>
+        {children}
+      </form>
     </Form>;

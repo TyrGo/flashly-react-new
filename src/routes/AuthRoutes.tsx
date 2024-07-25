@@ -1,14 +1,11 @@
 import { Route } from 'react-router-dom';
 import { OnlyAnonRoutable } from '~/routes/components';
-import { AuthLayout } from '~/layout/AuthLayout';
 import { paths } from './paths';
-
-// TODO: simplify strings below. Note: vite relies on static analysis so variables might not work
+import { Login } from '~/pages/auth/Login';
 
 export const AuthRoutes = (
-        <Route element={<OnlyAnonRoutable />}>
-            <Route element={<AuthLayout />}>
-                <Route lazy={() => import('~/pages/auth/Login')} path={paths.auth.login} />
-            </Route>
-        </Route>
+    <Route element={<OnlyAnonRoutable />}>
+        <Route element={<Login />} path={paths.auth.login} />
+        <Route lazy={() => import('~/pages/auth/Register')} path={paths.auth.register} />
+    </Route>
 );

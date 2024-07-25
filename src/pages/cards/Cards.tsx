@@ -3,6 +3,7 @@ import { CardEditor } from "./components/CardEditor";
 import { Grid } from "@mui/material";
 import { Card } from "~/api";
 import { useCardsQuery } from "./queries/cardsGet";
+import { CardCreator } from "./components/CardCreator";
 
 export const Cards = () => {
     const { data: cards, isLoading: cardsLoading } = useCardsQuery();
@@ -16,6 +17,7 @@ export const Cards = () => {
             {cards.map((card: Card) => (
                 <CardEditor card={card} />
             ))}
+            <CardCreator />
         </Grid>
     )
 }

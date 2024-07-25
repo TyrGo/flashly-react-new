@@ -8,11 +8,20 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useAuth } from '~/hooks';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { themeAtom } from '~/recoil/atoms';
 
 export const Navbar = () => {
     const { logout } = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const theme = useRecoilValue(themeAtom);
+    const setTheme = useSetRecoilState(themeAtom);
 
+    const handleThemeToggle = () => {
+        setTheme((currentTheme) => (currentTheme === 'lightTheme' ? 'darkTheme' : 'lightTheme'));
+    }; 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -31,6 +40,17 @@ export const Navbar = () => {
                 Flashly
             </Typography>
             <Box>
+                <IconButton
+                   size="large"
+                    aria-haspopup="true"
+                    onClick={handleThemeToggle}
+                    color="inherit"
+                >
+                    {theme === "lightTheme" 
+                        ? <LightModeIcon />
+                        : <DarkModeIcon />
+                    }
+                </IconButton>
               <IconButton
                 size="large"
                 aria-haspopup="true"

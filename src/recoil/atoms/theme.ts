@@ -1,6 +1,11 @@
 import { atom } from 'recoil';
 
-export const themeAtom = atom<'lightTheme' | 'darkTheme'>({
-    key: 'theme',
-    default: 'lightTheme',
+const getInitialTheme = () => {
+  const savedTheme = localStorage.getItem('theme');
+  return savedTheme ? savedTheme : 'lightTheme';
+};
+
+export const themeAtom = atom({
+  key: 'themeAtom',
+  default: getInitialTheme(),
 });
