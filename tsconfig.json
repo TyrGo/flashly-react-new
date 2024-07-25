@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    /* Bundler mode */
+    "moduleResolution": "node",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./",
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ],
+      "@api": [
+        "src/api/index.ts"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@hooks": [
+        "src/hooks/index.ts"
+      ],
+      "@routes": [
+        "src/routes/paths.ts"
+      ],
+      "@types": [
+        "src/types/index.ts"
+      ],
+      "@styles": [
+        "src/styles/index.ts"
+      ]
+    },
+    "types": [
+      "unplugin-icons/types/react"
+    ]
+  },
+  "include": [
+    "src"
+  ]
+}

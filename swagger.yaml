@@ -1,0 +1,228 @@
+paths:
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      parameters:
+      - in: body
+        required: false
+        name: body
+        schema:
+          $ref: '#/definitions/User'
+      description: Sign up user
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/TokenResponse'
+          description: ''
+        '401':
+          schema:
+            $ref: '#/definitions/Message'
+          description: ''
+  /auth/token:
+    post:
+      tags:
+      - Auth
+      parameters:
+      - in: body
+        required: false
+        name: body
+        schema:
+          $ref: '#/definitions/User'
+      description: Login user
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/TokenResponse'
+          description: ''
+        '401':
+          schema:
+            $ref: '#/definitions/Message'
+          description: ''
+  /auth/check:
+    get:
+      tags:
+      - Auth
+      parameters: []
+      description: Check if user is logged in
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/User'
+          description: ''
+        '404':
+          schema:
+            $ref: '#/definitions/Message'
+          description: ''
+  /auth/refresh:
+    post:
+      tags:
+      - Auth
+      parameters: []
+      description: Refresh token
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/TokenResponse'
+          description: ''
+  /cards/create_card:
+    post:
+      tags:
+      - Card
+      parameters:
+      - in: body
+        required: false
+        name: body
+        schema:
+          $ref: '#/definitions/Card'
+      description: Create new card
+      responses:
+        '201':
+          schema:
+            $ref: '#/definitions/Card'
+          description: ''
+  /cards/retrieve_cards:
+    get:
+      tags:
+      - Card
+      parameters: []
+      description: Retrieve all cards
+      responses:
+        '200':
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Card'
+          description: ''
+  /cards/retrieve_card:
+    get:
+      tags:
+      - Card
+      parameters: []
+      description: Retrieve next card
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Card'
+          description: ''
+  /cards/{card_id}/update_card:
+    patch:
+      tags:
+      - Card
+      parameters:
+      - in: body
+        required: false
+        name: body
+        schema:
+          $ref: '#/definitions/Card'
+      - in: path
+        name: card_id
+        required: true
+        type: integer
+        format: int32
+      description: Update card
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Card'
+          description: ''
+  /cards/{card_id}/bin_up:
+    post:
+      tags:
+      - Card
+      parameters:
+      - in: path
+        name: card_id
+        required: true
+        type: integer
+        format: int32
+      description: Raise card bin
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Message'
+          description: ''
+  /cards/{card_id}/bin_down:
+    post:
+      tags:
+      - Card
+      parameters:
+      - in: path
+        name: card_id
+        required: true
+        type: integer
+        format: int32
+      description: Lower card bin
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Message'
+          description: ''
+  /cards/{card_id}/delete_card:
+    delete:
+      tags:
+      - Card
+      parameters:
+      - in: path
+        name: card_id
+        required: true
+        type: integer
+        format: int32
+      description: Delete card
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Message'
+          description: ''
+info:
+  title: flask-apispec
+  version: v1
+swagger: '2.0'
+definitions:
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      username:
+        type: string
+      password:
+        type: string
+      is_admin:
+        type: boolean
+    required:
+    - username
+  TokenResponse:
+    type: object
+    properties:
+      token:
+        type: string
+  Message:
+    type: object
+    properties:
+      message:
+        type: string
+  Card:
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      word:
+        type: string
+      defn:
+        type: string
+      bin:
+        type: integer
+      wrongs:
+        type: integer
+      due:
+        type: string
+        format: date-time
+      user_id:
+        type: integer
+    required:
+    - defn
+    - user_id
+    - word
