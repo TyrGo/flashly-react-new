@@ -20,7 +20,7 @@ export const useAuth = () => {
 
   const navigate = useNavigate();
   const isAuthenticated = !isError && Boolean(user);
-  const isAdmin = isAuthenticated && user.is_admin;
+  const isAdmin = isAuthenticated && user?.is_admin;
 
   const resetJwt = useResetRecoilState(jwtAtom);
 

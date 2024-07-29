@@ -51,7 +51,7 @@ export const ActiveContent = ({
             })
           }
         >
-          I didn't
+          I didn&apos;t
         </Button>
       </CardActions>
     </>

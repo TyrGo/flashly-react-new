@@ -17,20 +17,31 @@ const CardSchema = Yup.object().shape({
 export const CardCreator = () => {
   const methods = useForm({
     resolver: yupResolver(CardSchema),
+    defaultValues: {
+      word: '',
+      defn: '',
+    },
   });
 
-  const { mutate: createCard, isLoading: isCreatingCard } =
+  const { mutate: createCard, isPending: isCreatingCard } =
     useCardCreateMutation();
 
   const {
     handleSubmit,
+    reset,
     formState: { isSubmitting },
   } = methods;
   const isLoading = isSubmitting || isCreatingCard;
 
   const onSubmit: SubmitHandler<CardEditorFormValues> = (
     formData: CardEditorFormValues,
-  ) => createCard({ formData });
+  ) => {
+    createCard({ formData }, {
+      onSuccess: () => {
+        reset();
+      }
+    })
+  };
 
   return (
     <Box position="relative">

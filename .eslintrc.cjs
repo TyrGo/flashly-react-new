@@ -13,6 +13,14 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
+    parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    },
+    project: './tsconfig.json'
+  },
   plugins: [
     'react',
     'react-hooks',
@@ -46,6 +54,23 @@ module.exports = {
   settings: {
     'react': {
       'version': 'detect'
+    },
+    'import/resolver': {
+      typescript: {
+        project: './tsconfig.json',
+      },
+      alias: {
+        map: [
+          ['~', './src'],
+          ['@api', 'src/api/*'],
+          ['@components', 'src/components/*'],
+          ['@hooks', 'src/hooks/*'],
+          ['@routes', 'src/routes/*'],
+          ['@types', 'src/types/*'],
+          ['@styles', 'src/styles/*'],
+        ],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
+      }
     }
   }
 };

@@ -30,6 +30,7 @@ export class AxiosHttpRequestWithRetry extends BaseHttpRequest {
   private refreshableAxiosInstance = axios.create();
   private refresherAxiosInstance = axios.create();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private refreshAuthLogic = (failedRequest: any) => {
     const refreshUrl = this.config.BASE + '/jwt/refresh/';
     const refreshToken = getRefreshToken();
@@ -52,7 +53,7 @@ export class AxiosHttpRequestWithRetry extends BaseHttpRequest {
         localStorage.removeItem('access');
         localStorage.removeItem('refresh');
 
-        queryClient.invalidateQueries(['user']);
+        queryClient.invalidateQueries({ queryKey: ['user'] });
 
         return Promise.reject(failedRequest);
       });

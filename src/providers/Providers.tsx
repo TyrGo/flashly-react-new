@@ -5,13 +5,16 @@ import { Loader } from '~/components/loaders';
 
 import { MUIProvider } from './MUIProvider';
 import { ReactQueryProvider } from './ReactQueryProvider';
+import ErrorBoundary from '~/layout/ErrorBoundary/ErrorBoundary';
 
 export const Component = () => (
   <Suspense fallback={<Loader />}>
     <RecoilRoot>
       <MUIProvider>
         <ReactQueryProvider>
-          <Outlet />
+          <ErrorBoundary>
+            <Outlet />
+          </ErrorBoundary>
         </ReactQueryProvider>
       </MUIProvider>
     </RecoilRoot>

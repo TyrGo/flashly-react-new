@@ -13,7 +13,11 @@ export type BinUpdate = {
   cardId: number;
 };
 
+
 export type CardEditorFormValues = {
   word: string;
   defn: string;
 };
+
+export type CardEditorWithId =
+  CardEditorFormValues & { id: number };

@@ -5,11 +5,10 @@ import { queryClient } from '~/providers/ReactQueryProvider';
 export const useCardDeleteMutation = () => {
   return useMutation({
     mutationFn: (id: number) => {
-      console.log('id', id);
       return AppClient.card.deleteCardsDeleteCard(id);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries('cards');
+      queryClient.invalidateQueries({ queryKey: ['card'] });
     },
   });
 };

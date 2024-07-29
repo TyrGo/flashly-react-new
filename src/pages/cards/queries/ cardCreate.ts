@@ -9,7 +9,7 @@ export const useCardCreateMutation = () => {
       return AppClient.card.postCardsCreateCard(formData);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries('cards');
+      queryClient.invalidateQueries({queryKey: ['cards']});
     },
   });
 };

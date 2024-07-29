@@ -10,7 +10,7 @@ export const useCardBinMutation = () => {
         ? AppClient.card.postCardsBinUp(cardId)
         : AppClient.card.postCardsBinDown(cardId),
     onSuccess: () => {
-      queryClient.invalidateQueries('card');
+      queryClient.invalidateQueries({ queryKey: ['card'] });
     },
   });
 };

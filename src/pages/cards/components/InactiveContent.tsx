@@ -3,7 +3,7 @@ import { CardContent, Divider, Typography } from '@mui/material';
 import { Timer } from './Timer';
 
 type InactiveContentProps = {
-  due: string;
+  due: string | undefined;
   checkPointCb: () => void;
 };
 
@@ -18,16 +18,18 @@ export const InactiveContent = ({
         Please come back later to review more words.
       </Typography>
       <Divider sx={{ marginTop: 2 }} />
-      <Timer
-        due={due}
-        direction="backward"
-        checkpoints={[
-          {
-            time: 0,
-            callback: checkPointCb,
-          },
-        ]}
-      />
+      {due && (
+        <Timer
+          due={due}
+          direction="backward"
+          checkpoints={[
+            {
+              time: 0,
+              callback: checkPointCb,
+            },
+          ]}
+        />
+      )}
     </CardContent>
   );
 };

@@ -8,14 +8,10 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import { useCardDeleteMutation } from '../queries/cardDelete';
 import { useCardUpdateMutation } from '../queries/cardPatch';
+import { CardEditorFormValues } from '~/types';
 
 type CardEditorProps = {
   card: Card;
-};
-
-type CardEditorFormValues = {
-  word: string;
-  defn: string;
 };
 
 const CardSchema = Yup.object().shape({
@@ -25,13 +21,13 @@ const CardSchema = Yup.object().shape({
 
 export const CardEditor = ({ card }: CardEditorProps) => {
   const { id, defn, word } = card;
-  const { mutate: updateCard, isLoading: isUpdatingCard } =
+  const { mutate: updateCard, isPending: isUpdatingCard } =
     useCardUpdateMutation();
-  const { mutate: deleteCard, isLoading: isDeletingCard } =
+  const { mutate: deleteCard, isPending: isDeletingCard } =
     useCardDeleteMutation();
 
   const handleDelete = () => {
-    deleteCard(id);
+    deleteCard(id as number);
   };
 
   const methods = useForm({
@@ -46,7 +42,7 @@ export const CardEditor = ({ card }: CardEditorProps) => {
 
   const onSubmit: SubmitHandler<CardEditorFormValues> = (
     formData: CardEditorFormValues,
-  ) => updateCard({ id, formData });
+  ) => updateCard({ id: id as number, formData });
 
   return (
     <MUiCard>

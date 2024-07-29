@@ -16,7 +16,6 @@ import { paths } from '~/routes/paths';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-import { useLoginMutation } from './queries/authPost';
 import { useRegisterMutation } from './queries/authCreate';
 
 const LoginSchema = Yup.object().shape({
@@ -115,7 +114,7 @@ export const Component = () => {
           type="submit"
           variant="contained"
         >
-          Login
+          Sign Up
         </LoadingButton>
       </Stack>
     </FormProvider>

@@ -37,7 +37,7 @@ export class CardService {
    * @returns Card
    * @throws ApiError
    */
-  public getCardsRetrieveCard(): CancelablePromise<Card> {
+  public getCardsRetrieveCard(): CancelablePromise<any> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/cards/retrieve_card',
@@ -54,7 +54,6 @@ export class CardService {
     cardId: number,
     body?: Card,
   ): CancelablePromise<Card> {
-    console.log('aa', cardId, body);
     return this.httpRequest.request({
       method: 'PATCH',
       url: '/cards/{card_id}/update_card',

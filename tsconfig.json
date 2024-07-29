@@ -28,22 +28,22 @@
         "./src/*"
       ],
       "@api": [
-        "src/api/index.ts"
+        "src/api/*"
       ],
       "@components/*": [
         "src/components/*"
       ],
       "@hooks": [
-        "src/hooks/index.ts"
+        "src/hooks/*"
       ],
       "@routes": [
-        "src/routes/paths.ts"
+        "src/routes"
       ],
       "@types": [
-        "src/types/index.ts"
+        "src/types/*"
       ],
       "@styles": [
-        "src/styles/index.ts"
+        "src/styles/*"
       ]
     },
     "types": [

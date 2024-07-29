@@ -17,7 +17,7 @@ export const useCardUpdateMutation = () => {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries('cards');
+      queryClient.invalidateQueries({ queryKey: ['card'] });
     },
   });
 };
