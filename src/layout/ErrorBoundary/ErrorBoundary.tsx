@@ -1,6 +1,6 @@
-import { ErrorMessage } from './ErrorMessage';
-
 import { Component, ErrorInfo, ReactNode } from 'react';
+
+import { ErrorMessage } from './ErrorMessage';
 
 interface Props {
   children?: ReactNode;
@@ -41,7 +41,7 @@ class ErrorBoundary extends Component<Props, State> {
     const { hasError } = this.state;
     const { children } = this.props;
 
-    <h1>HIII</h1>
+    <h1>HIII</h1>;
     if (hasError) {
       return <ErrorMessage />;
     }

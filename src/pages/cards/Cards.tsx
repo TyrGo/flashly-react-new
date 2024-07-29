@@ -14,7 +14,7 @@ export const Cards = () => {
     return <Loader />;
   }
 
-  console.log("cards",cards)
+  console.log('cards', cards);
   return (
     <Grid display="flex" gap={2} flexWrap="wrap">
       {cards.map((card: Card) => (

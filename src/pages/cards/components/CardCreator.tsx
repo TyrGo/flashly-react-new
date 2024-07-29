@@ -36,11 +36,14 @@ export const CardCreator = () => {
   const onSubmit: SubmitHandler<CardEditorFormValues> = (
     formData: CardEditorFormValues,
   ) => {
-    createCard({ formData }, {
-      onSuccess: () => {
-        reset();
-      }
-    })
+    createCard(
+      { formData },
+      {
+        onSuccess: () => {
+          reset();
+        },
+      },
+    );
   };
 
   return (

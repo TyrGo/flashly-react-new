@@ -5,10 +5,10 @@ import { FormProvider, RHFTextField } from '~/components/hookForm';
 import * as Yup from 'yup';
 import { Card } from '~/api';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { CardEditorFormValues } from '~/types';
 
 import { useCardDeleteMutation } from '../queries/cardDelete';
 import { useCardUpdateMutation } from '../queries/cardPatch';
-import { CardEditorFormValues } from '~/types';
 
 type CardEditorProps = {
   card: Card;

@@ -11,17 +11,17 @@ export const GlobalStyles = () => {
         body: {
           margin: 0,
           padding: 0,
-          display: "flex",
-          placeItems: "center",
-          minWidth: "320px",
+          display: 'flex',
+          placeItems: 'center',
+          minWidth: '320px',
           height: '100%',
-          minHeight: "100vh",
+          minHeight: '100vh',
         },
         '#root': {
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "2rem",
-          textAlign: "center",
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: '2rem',
+          textAlign: 'center',
         },
       }}
     />

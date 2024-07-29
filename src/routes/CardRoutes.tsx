@@ -1,10 +1,10 @@
 import { Route } from 'react-router-dom';
 import { Layout } from '~/layout/Layout';
 import { Card, Cards } from '~/pages/cards';
+import { PageNotFound } from '~/pages/errors/PageNotFound';
 
 import { paths } from './paths';
 import { OnlyAuthenticatedRoutable } from './components';
-import { PageNotFound } from '~/pages/errors/PageNotFound';
 
 export const CardRoutes = (
   <Route element={<OnlyAuthenticatedRoutable />}>

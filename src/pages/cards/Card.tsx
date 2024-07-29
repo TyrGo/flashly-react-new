@@ -12,7 +12,7 @@ export const Card = () => {
   const [displayDefn, setDisplayDefn] = useState(false);
   const [displayCard, setDisplayCard] = useState(false);
 
-  const { data, isLoading: cardLoading } = useCardQuery();
+  const { data: card, isLoading: cardLoading } = useCardQuery();
   const { mutate: updateBin } = useCardBinMutation();
 
   useEffect(() => {
@@ -30,8 +30,7 @@ export const Card = () => {
     setDisplayCard(true);
   };
 
-    console.log("card", card)
-
+  console.log('card', card);
 
   if (cardLoading || !card) {
     return <Loader />;
