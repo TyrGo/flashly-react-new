@@ -35,9 +35,6 @@ type RegisterFormValues = {
 export const Component = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const navigate = useNavigate();
-  const setJwt = useSetRecoilState(jwtAtom);
-
   const methods = useForm({
     resolver: yupResolver(LoginSchema),
   });
@@ -49,20 +46,13 @@ export const Component = () => {
 
   const {
     mutate: register,
-    isLoading: isLoginLoading,
+    isPending: isLoginLoading,
     error,
   } = useRegisterMutation();
 
   const onSubmit: SubmitHandler<RegisterFormValues> = async (
     formData: RegisterFormValues,
-  ) => {
-    const resp = await register(formData);
-
-    if (resp) {
-      setJwt(resp);
-      navigate(paths.cards.list);
-    }
-  };
+  ) => register(formData);
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -83,10 +73,6 @@ export const Component = () => {
         <Typography variant="h4" gutterBottom>
           Register with Flashly
         </Typography>
-
-        {error?.status === 401 && (
-          <Alert severity="error">Username already taken.</Alert>
-        )}
 
         <RHFTextField label="Username" name="username" />
 

@@ -1,4 +1,10 @@
-import { Controller, useFormContext } from 'react-hook-form';
+import {
+  Controller,
+  useFormContext,
+  ControllerRenderProps,
+  ControllerFieldState,
+  UseFormStateReturn,
+} from 'react-hook-form';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 
 type Props = TextFieldProps & {
@@ -6,18 +12,11 @@ type Props = TextFieldProps & {
   hideError?: boolean;
 };
 
-type Field = {
-  value: number | string;
-  onChange: (value: number | string) => void;
-};
-
-type FieldState = {
-  error: { message: string };
-};
-
 type RenderProps = {
-  field: Field;
-  fieldState: FieldState;
+  field: ControllerRenderProps;
+  fieldState: ControllerFieldState;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  formState: UseFormStateReturn<any>;
 };
 
 export const RHFTextField = ({

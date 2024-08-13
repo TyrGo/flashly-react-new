@@ -35,9 +35,6 @@ type LoginFormValues = {
 export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const navigate = useNavigate();
-  const setJwt = useSetRecoilState(jwtAtom);
-
   const methods = useForm({
     resolver: yupResolver(LoginSchema),
   });
@@ -49,20 +46,13 @@ export const Login = () => {
 
   const {
     mutate: login,
-    isLoading: isLoginLoading,
+    isPending: isLoginLoading,
     error,
   } = useLoginMutation();
 
   const onSubmit: SubmitHandler<LoginFormValues> = async (
     formData: LoginFormValues,
-  ) => {
-    const resp = await login(formData);
-
-    if (resp) {
-      setJwt(resp);
-      navigate(paths.cards.view); // TODO: admin to list
-    }
-  };
+  ) => login(formData);
 
   const togglePassword = () => {
     setShowPassword(!showPassword);

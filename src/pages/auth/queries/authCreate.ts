@@ -18,7 +18,7 @@ export const useRegisterMutation = () => {
         // refresh: data.refresh, // TODO: Implement refresh token
       };
       setJwt(jwt);
-      navigate(paths.cards.view);
+      navigate(paths.cards.list);
     },
   });
 };
